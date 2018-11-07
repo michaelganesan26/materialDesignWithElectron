@@ -36,14 +36,14 @@ export class AdminLayoutComponent implements OnInit, AfterViewInit {
       });
        this.router.events.subscribe((event:any) => {
           if (event instanceof NavigationStart) {
-             if (event.url != this.lastPoppedUrl)
-                 this.yScrollStack.push(window.scrollY);
+             if (event.url != this.lastPoppedUrl) {
+                 this.yScrollStack.push(window.scrollY); }
          } else if (event instanceof NavigationEnd) {
              if (event.url == this.lastPoppedUrl) {
                  this.lastPoppedUrl = undefined;
                  window.scrollTo(0, this.yScrollStack.pop());
-             } else
-                 window.scrollTo(0, 0);
+             } else {
+                 window.scrollTo(0, 0); }
          }
       });
       this._router = this.router.events.filter(event => event instanceof NavigationEnd).subscribe((event: NavigationEnd) => {
@@ -58,13 +58,12 @@ export class AdminLayoutComponent implements OnInit, AfterViewInit {
   ngAfterViewInit() {
       this.runOnRouteChange();
   }
-  isMaps(path){
-      var titlee = this.location.prepareExternalUrl(this.location.path());
-      titlee = titlee.slice( 1 );
-      if(path == titlee){
+  isMaps(path) {
+      let title = this.location.prepareExternalUrl(this.location.path());
+      title = title.slice( 1 );
+      if (path === title) {
           return false;
-      }
-      else {
+      } else {
           return true;
       }
   }
